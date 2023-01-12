@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<style>
+.write_content {
+	max-width: 600px;
+	height: 800px;
+	padding: 20px;
+	border: 1px solid gray;
+	border-radius: 5px;
+	overflow-y: auto;
+	max-height: 400px;
+	padding: 20px;
+	text-align: left;
+	margin: 30px 0 0 30px;
+}
+
+.form-container {
+	margin-top: 50px;
+	margin-bottom: 50px;
+}
+
+.form-tools {
+	margin-top: 20px;
+}
+
+.form-tools .btn {
+	margin: auto;
+}
+</style>
+</head>
+<body>
+	<div class="form-container text-center">
+		<h3 class="text-center" th:text="|제목 :  ${notice.title}|">제목</h3>
+		<div class="write_content mx-auto">
+			<p th:text="${notice.content}">내용</p>
+		</div>
+		<div class="form-group form-tools d-flex justify-content-between">
+			<a class="btn btn-secondary mr-3" href="/notice/list">글목록</a> <a
+				class="btn btn-danger mr-3"
+				th:href="@{/notice/delete/{id}(id= ${notice.id})}">글삭제</a> <a
+				class="btn btn-warning"
+				th:href="@{/notice/update/{id}(id= ${notice.id})}">수정</a>
+		</div>
+	</div>

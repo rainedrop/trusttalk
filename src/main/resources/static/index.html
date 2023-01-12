@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/default_layout}">
+<head>
+<meta charset="UTF-8">
+<title>Trusttalk 인덱스 페이지</title>
+<link rel="stylesheet" href="../css/bootstrap.min.css">
+<style>
+.footer_container {
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	color: #fff;
+	text-align: center;
+}
+</style>
+</head>
+<body>
+	<div class="b-example-divider"></div>
+
+	<header class="p-3 text-bg-dark">
+		<div class="container">
+			<div
+				class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+				<a href="/"
+					class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+					<img src="/img/logo.png" alt="image description" width="80px"
+					height="60px" role="img" aria-label="image name"
+					style="margin-right: 10px; margin-left: -80px">
+				</a>
+
+				<ul
+					class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+					<li><a href="/" class="nav-link px-2 text-secondary">HOME</a></li>
+					<li><a href="/notice/list" class="nav-link px-2 text-white">공지사항</a></li>
+					<li><a href="/anonymous/list" class="nav-link px-2 text-white">TrustTalk</a></li>
+				</ul>
+				<div class="text-end">
+					<button type="button" onClick="location.href='/login'"
+						sec:authorize="isAnonymous()" class="btn btn-outline-light me-2">로그인</button>
+					<button type="button" onClick="location.href='/login'"
+						sec:authorize="isAuthenticated()"
+						class="btn btn-outline-light me-4">로그아웃</button>
+					<button type="button" onClick="location.href='/join'"
+						sec:authorize="isAnonymous()" class="btn btn-warning">회원가입</button>
+				</div>
+
+			</div>
+		</div>
+	</header>
+	<div class="container">
+		<h1>Trusttalk</h1>
+		<div>
+			<p>믿고 말하는 익명 게시판</p>
+		</div>
+	</div>
+	<!-- START : FOOTER -->
+	<div class="footer_container">
+		<footer class="py-3 my-4">
+			<p class="text-center text-muted">© 2022. Trusttalk Inc. all
+				rights reserved</p>
+		</footer>
+	</div>
+	<!-- END : FOOTER -->
+</body>
+</html>

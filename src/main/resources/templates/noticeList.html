@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/default_layout}">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/bootstrap.min.css"
+	th:href="@{/css/bootstrap.min.css}">
+<style>
+.layout {
+	text-align: center;
+	overflow: auto;
+	height: 600px;
+}
+
+#board {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.footer_container {
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	background-color: #fff;
+	height: 60px;
+}
+
+</style>
+</head>
+
+<body>
+	<th:block layout:fragment="content">
+		<div class="layout">
+			<table id="board" class="table table-striped w-auto">
+				<thead>
+					<tr>
+						<th class="col-md-1">글번호</th>
+						<th class="col-md-7">제목</th>
+						<th class="col-md-1">작성자</th>
+						<th class="col-md-1">조회수</th>
+						<th class="col-md-2">작성일</th>
+					</tr>
+				</thead>
+				<hr>
+				<tbody>
+					<tr th:each="notice : ${notice}">
+						<td th:text="${notice.id}"></td>
+						<td><a th:text="${notice.title}"
+							th:href="@{/notice/detail/{id}(id = ${notice.id})}"></a></td>
+						<td th:text="${notice.writer}"></td>
+						<td th:text="${notice.hits}"></td>
+						<td th:text="${notice.date}"></td>
+					</tr>
+				</tbody>
+			</table>
+			<div>
+
+				<th:blcok th:each="page : ${#numbers.sequence(startPage, endPage)}">
+					<a th:if="${page != nowPage}"
+						th:href="@{/notice/list(page = ${page - 1})}" th:text="${page}"></a>
+					<strong th:if="${page == nowPage}" th:text="${page}"
+						style="color: red"></strong>
+				</th:blcok>
+				<span class=write_btn><a href="/notice/write" class="btn">글쓰기</a></span>
+			</div>
+		</div>
+	</th:block>
+</body>
+
+</html>

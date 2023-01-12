@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	<link rel="stylesheet" href="styles.css">
+	<title>로그인 페이지</title>
+	<style>
+		/* Add some padding and background color to the form */
+		form {
+			padding: 20px;
+			background-color: #f7f7f7;
+			border-radius: 10px;
+		}
+
+		/* Add some spacing between the form inputs */
+		form .form-group {
+			margin-bottom: 20px;
+		}
+
+		/* Style the "error" message */
+		p.error {
+			color: red;
+			margin-top: 10px;
+			text-align: center;
+		}
+
+		/* Add some padding and hover effect to the buttons */
+		button.btn {
+			padding: 12px 24px;
+			transition: background-color 0.2s ease;
+		}
+
+		button.btn:hover {
+			background-color: #f0f0f0;
+		}
+
+		/* Change the font and add some spacing to the labels */
+		label {
+			font-size: 14px;
+			margin-bottom: 5px;
+			display: block;
+		}
+
+		.login_btn {
+			display: flex;
+			justify-content: space-between;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="login_container" class="d-flex justify-content-center align-items-center" style="height:100vh">
+		<form role="form" method="post" action="login" class="mx-auto" style="width:400px">
+			<div class="form-group">
+				<label for="account">아이디</label>
+				<input type="text" name="account" class="form-control" placeholder="아이디를 입력해주세요">
+			</div>
+			<div class="form-group">
+				<label for="password">비밀번호</label>
+				<input type="password" name="password" id="password" class="form-control" placeholder="비밀번호를 입력해주세요">
+			</div>
+			<p class="error" th:if="${loginErrorMsg}" th:text="${loginErrorMsg}"></p>
+			<div class="login_btn">
+				<button type="button" class="btn btn-secondary" onclick="location.href='/join'">회원가입</button>
+				<button class="btn btn-primary">로그인</button>
+			</div>
+		</form>
+	</div>
+</body>
+
+</html>

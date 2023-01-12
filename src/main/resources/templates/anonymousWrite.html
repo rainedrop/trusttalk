@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>익명게시판 작성폼</title>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<style>
+.write-form {
+	max-width: 600px;
+	margin: 0 auto;
+}
+
+.form-tools {
+	display: flex;
+	justify-content: space-between;
+}
+</style>
+<body>
+	<div class="container">
+		<div class="write_layout"></div>
+		<form class="write-form" method="POST">
+			<div class="form-group">
+				<label for="title">Title</label> <input type="text"
+					class="form-control" id="title" name="title"
+					placeholder="Enter title">
+			</div>
+			<div class="form-group">
+				<label for="content">Content</label>
+				<textarea class="form-control" id="content" name="content" rows="3"></textarea>
+			</div>
+			<input type="hidden" name="${_csrf.parameterName}"
+				value="${_csrf.token}" />
+			<div class="form-group form-tools">
+				<button type="submit" class="btn btn-primary">Submit</button>
+			</div>
+		</form>
+	</div>
+</body>
+</html>

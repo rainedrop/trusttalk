@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/default_layout}">
+<head>
+<meta charset="UTF-8">
+<title>익명게시판 목록</title>
+<link rel="stylesheet" href="../css/bootstrap.min.css"
+	th:href="@{/css/bootstrap.min.css}">
+<style>
+.layout {
+	text-align: center;
+}
+
+#board {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.footer_container {
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	background-color: #fff; /* or any color you want */
+	padding: 1rem;
+}
+</style>
+</head>
+
+<body>
+	<th:block layout:fragment="content">
+		<div class="layout">
+			<table id="board" class="table table-striped w-auto">
+				<thead>
+					<tr>
+						<th class="col-md-1">글번호</th>
+						<th class="col-md-7">제목</th>
+						<th class="col-md-1">작성자</th>
+						<th class="col-md-1">조회수</th>
+						<th class="col-md-2">작성일</th>
+					</tr>
+				</thead>
+				<hr>
+				<tbody>
+					<tr th:each="anonymous : ${anonymous}">
+						<td th:text="${anonymous.id}"></td>
+						<td><a th:text="${anonymous.title}"
+							th:href="@{/anonymous/detail/{id}(id = ${anonymous.id})}"></a></td>
+						<td th:text="${anonymous.writer}"></td>
+						<td th:text="${anonymous.hits}"></td>
+						<td th:text="${anonymous.date}"></td>
+					</tr>
+				</tbody>
+			</table>
+			<th:blcok th:each="page : ${#numbers.sequence(startPage, endPage)}">
+				<a th:if="${page != nowPage}"
+					th:href="@{/anonymous/list(page = ${page - 1})}" th:text="${page}"></a>
+				<strong th:if="${page == nowPage}" th:text="${page}"
+					style="color: red"></strong>
+			</th:blcok>
+			<div>
+				<a href="/notice/write">글쓰기</a>
+				<form action="/notice/search"
+					class="col-4 col-lg-auto mb-3 mb-lg-0 me-lg-3 form-horizontal"
+					role="search">
+					<div class="form-group">
+						<div class="input-group">
+							<input type="text" name="itemName"
+								class="form-control form-control-dark text-bg-dark"
+								placeholder="검색...">
+							<button type="submit" class="btn btn-outline-secondary me-2">Search</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</th:block>
+</body>
+
+</html>
